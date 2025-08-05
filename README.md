@@ -6,7 +6,6 @@ Alita is a smart, fashion-forward assistant that helps you look your best every 
 * Current weather conditions
 * Real-time fashion trends
 
----
 
 ## 🔍 Key Features
 
@@ -16,7 +15,7 @@ Alita is a smart, fashion-forward assistant that helps you look your best every 
 * 📦 **Structured Output** – Clean and consistent data format for easy integration into frontends or apps.
 * 🔧 **Function Calling** – Dynamically triggers relevant tools (e.g., weather, wardrobe APIs, or shopping platforms).
 
----
+
 
 ## 🛠️ Tech Stack
 
