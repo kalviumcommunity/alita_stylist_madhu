@@ -111,12 +111,13 @@ Goal: Produce a polished, confidence-boosting outfit plan that:
 - Follows budget, gender, occasion, and any preferences/wardrobe.
 - Uses only provided brands and typical Indian pricing where possible.
 - Is trendy yet practical, with clear formatting.
+- Keep tone professional but sprinkle light humor (like a friendly stylist, not a stand-up comedian).
 
 OUTPUT FORMAT:
 1. Outfit Recommendation (top, bottom, shoes, accessories)
 2. Color Palette & Style Notes
 3. Estimated Costs (line items + total vs budget)
-4. Styling Tips (comfort, confidence, care)
+4. Styling Tips (comfort, confidence, care, with a touch of playful humor)
 """
 
         # --- 4) Pick dynamic examples
@@ -141,12 +142,17 @@ Styling Context:
 
         contents.append(types.Content(role="user", parts=[types.Part(text=task_user)]))
 
-        # --- 7) Generate
+        # --- 7) Generate with temperature for accuracy + playful tone
+        gen_config = types.GenerateContentConfig(
+            temperature=0.6,  # Lower temp → more focused, but still allows some humor
+            tools=[types.Tool(googleSearch=types.GoogleSearch())]
+        )
+
         plan_text = ""
         for chunk in client.models.generate_content_stream(
             model="gemini-2.0-flash",
             contents=contents,
-            config=types.GenerateContentConfig(tools=[types.Tool(googleSearch=types.GoogleSearch())])
+            config=gen_config
         ):
             if chunk.text:
                 plan_text += chunk.text
@@ -155,7 +161,8 @@ Styling Context:
         if not plan_text.strip():
             response = client.models.generate_content(
                 model="gemini-2.0-flash",
-                contents=contents
+                contents=contents,
+                config=gen_config
             )
             plan_text = "".join([p.text for p in response.contents[0].parts if p.text])
 
