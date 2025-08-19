@@ -6,6 +6,17 @@ meta {
 
 post {
   url: http://127.0.0.1:5000/style-me
-  body: none
+  body: json
   auth: inherit
+}
+
+body:json {
+  {
+    "gender": "female",
+    "occasion": "casual dinner with friends",
+    "budget": "₹3000",
+    "preferences": "chic, minimalist, loves neutral tones",
+    "wardrobe": "white sneakers, black jeans, beige cardigan"
+  }
+  
 }
