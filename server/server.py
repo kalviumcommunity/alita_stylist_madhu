@@ -142,9 +142,9 @@ Styling Context:
 
         contents.append(types.Content(role="user", parts=[types.Part(text=task_user)]))
 
-        # --- 7) Generate with top_p for balanced creativity + coherence
+        # --- 7) Generate with top_k for focused creativity
         gen_config = types.GenerateContentConfig(
-            top_p=0.85,  # Nucleus sampling: considers top 85% of probability mass
+            top_k=40,  # Only consider the top 40 most likely tokens at each step
             tools=[types.Tool(googleSearch=types.GoogleSearch())]
         )
 
