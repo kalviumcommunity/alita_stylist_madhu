@@ -142,9 +142,9 @@ Styling Context:
 
         contents.append(types.Content(role="user", parts=[types.Part(text=task_user)]))
 
-        # --- 7) Generate with temperature for accuracy + playful tone
+        # --- 7) Generate with top_p for balanced creativity + coherence
         gen_config = types.GenerateContentConfig(
-            temperature=0.6,  # Lower temp → more focused, but still allows some humor
+            top_p=0.85,  # Nucleus sampling: considers top 85% of probability mass
             tools=[types.Tool(googleSearch=types.GoogleSearch())]
         )
 
